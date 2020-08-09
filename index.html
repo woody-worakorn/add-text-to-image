@@ -45,6 +45,10 @@
         font-style: italic;
         margin: 1px 0 1em 0;
       }
+
+      .color {
+        text-align: right;
+      }
     </style>
   </head>
   <body>
@@ -55,7 +59,7 @@
         <label for="text">Text:</label>
         <input id="text" type="text" value="Firefox" required>
         <label for="color">Color:</label>
-        <input id="color" type="color" value="#000000" required>
+        <div class="color"><input id="color" type="color" value="#000000" required></div>
         <label for="font">Font (CSS <code>font</code> syntax, <kbd>RET</kbd> to apply):</label>
         <input id="font" type="text" value="32px sans-serif" required>
         <label for="x-position">Position X-axis (*):</label>
