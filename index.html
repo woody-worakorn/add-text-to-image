@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add text to image</title>
+    <title>:D</title>
     <style>
       body {
         margin: 0 auto;
@@ -52,22 +52,26 @@
     </style>
   </head>
   <body>
-    <h1>Add text to image</h1>
+    <h1>White hat - ระบบทดสอบการเรียน</h1>
     <form>
-        <label for="file">Select another image:</label>
-        <input id="file" type="file" accept="image/*" required>
-        <label for="text">Text:</label>
-        <input id="text" type="text" value="Firefox" required>
-        <label for="color">Color:</label>
-        <div class="color"><input id="color" type="color" value="#000000" required></div>
-        <label for="font">Font (CSS <code>font</code> syntax, <kbd>RET</kbd> to apply):</label>
-        <input id="font" type="text" value="32px sans-serif" required>
-        <label for="x-position">Position X-axis (*):</label>
-        <input id="x-position" type="number" min="0" required>
-        <label for="y-position">Position Y-axis (*):</label>
-        <input id="y-position" type="number" min="0" required>
+       
+        <label for="text">ข้อความ:</label>
+        <input id="text" type="text" value="[เลขบัตร 13 ตัว] แล้วเว้นวรรคประมาณ 20 ครั้ง [ชื่อสถานประกอบการ]" required>
+
+        <input id="file" type="file" accept="image/*" required hidden>
+
+        <div class="color"><input id="color" type="color" value="#000000" required hidden></div>
+
+
+        <input id="font" type="text" value="14px sans-serif" required hidden>
+ 
+        <input id="x-position" type="number" min="0" value="911" required hidden>
+       
+        <input id="y-position" type="number" value="719" min="0" required hidden>
+
+
     </form>
-    <p class="tip">(*) You can also click the canvas to change position of the text.</p>
+    <p class="tip">(*) เสร็จแล้วคลิกขวา บันทึกได้เลย</p>
     <div class="container">
       <canvas><p>The website requires HTML Canvas to work, your browser doesn't support it.</p></canvas>
     </div>
@@ -81,7 +85,7 @@
       const inputXPosition = document.querySelector("#x-position");
       const inputYPosition = document.querySelector("#y-position");
       const img = new Image();
-      img.src = "firefox.png";
+      img.src = "bg.png";
       inputFile.onchange = e => {
         const file = inputFile.files[0];
         img.src = URL.createObjectURL(file);
@@ -90,26 +94,14 @@
         canvas.width = img.width;
         canvas.height = img.height;
         canvas.style.display = "block";
-        inputXPosition.max = canvas.width - 1;
-        inputYPosition.max = canvas.height - 1;
-        // center text initially
-        inputYPosition.value = Math.floor(canvas.height / 2);
-        inputXPosition.value = centerXPosition();
+
         draw();
       };
       inputText.oninput = draw;
       inputFont.onchange = draw;
       inputColor.oninput = draw;
-      inputXPosition.oninput = draw;
-      inputYPosition.oninput = draw;
 
-      canvas.onclick = e => {
-        // https://stackoverflow.com/a/18053642/
-        const rect = canvas.getBoundingClientRect();
-        inputXPosition.value = Math.floor(e.clientX - rect.left);
-        inputYPosition.value = Math.floor(e.clientY - rect.top);
-        draw();
-      };
+  
 
       function centerXPosition() {
         ctx.font = inputFont.value;
